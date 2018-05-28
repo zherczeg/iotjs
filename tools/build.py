@@ -278,6 +278,9 @@ def build_cmake_args(options):
     if options.target_os == 'tizenrt':
         include_dirs.append('%s/../framework/include/iotbus' % options.sysroot)
 
+    if options.target_os == 'windows':
+        cmake_args.append('-GVisual Studio 15 2017 Win64')
+
     include_dirs.extend(options.external_include_dir)
     cmake_args.append("-DEXTERNAL_INCLUDE_DIR='%s'" % (' '.join(include_dirs)))
 
@@ -307,7 +310,7 @@ def build_iotjs(options):
     cmake_opt = [
         '-B%s' % options.build_root,
         '-H%s' % path.PROJECT_ROOT,
-        "-DCMAKE_TOOLCHAIN_FILE='%s'" % options.cmake_toolchain_file,
+        '-DCMAKE_TOOLCHAIN_FILE=%s' % options.cmake_toolchain_file,
         '-DCMAKE_BUILD_TYPE=%s' % options.buildtype.capitalize(),
         '-DTARGET_ARCH=%s' % options.target_arch,
         '-DTARGET_OS=%s' % options.target_os,

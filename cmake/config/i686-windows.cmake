@@ -1,4 +1,4 @@
-# Copyright 2016-present Samsung Electronics Co., Ltd. and other contributors
+# Copyright 2015-present Samsung Electronics Co., Ltd. and other contributors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,23 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import os
+set(CMAKE_SYSTEM_NAME Windows)
+set(CMAKE_SYSTEM_PROCESSOR i686)
 
-
-class Platform(object):
-    def __init__(self):
-        _os = "windows"
-        _arch = "x86"
-        self._os = _os
-        self._arch = _arch
-
-    def os(self):
-        """ Retrieve host OS name. """
-        return self._os.lower()
-
-    def arch(self):
-        """ Retrieve host arch name. """
-        arch = self._arch.lower()
-        if arch in ["armv7l"]:
-            arch = "arm"
-        return arch
+set(CMAKE_C_COMPILER CL.exe)
+set(CMAKE_C_COMPILER_WORKS TRUE)
